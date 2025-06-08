@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen">
-      <header className="bg-neutral-100 h-[54px] py-150 px-200">
+      <header className="bg-neutral-100 h-[54px] py-150 px-200 flex items-center shrink-0 md:py-200 md:px-400 md:h-[74px]">
         <Link href="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,10 +43,10 @@ export default function Home() {
         </Link>
       </header>
 
-      <main className="bg-white rounded-t-[8px] py-250 px-200 flex flex-col items-start gap-200 shrink-0 flex-1 overflow-y-auto">
+      <main className="bg-white rounded-t-[8px] py-250 px-200 flex flex-col items-start gap-200 shrink-0 flex-1 overflow-y-auto md:py-300 md:px-400 md:rounded-t-[16px]">
         <h1 className="text-preset-1 text-neutral-950 ">All Notes</h1>
 
-        <p className="flex p-100 items-center justify-center gap-[10px] self-stretch rounded-[8px] border border-neutral-200 bg-neutral-100 text-neutral-950 text-preset-5">
+        <p className="flex p-100 items-center justify-center gap-[10px] self-stretch rounded-[8px] border border-neutral-200 bg-neutral-100 text-neutral-950 text-preset-5 md:justify-start md:gap-[16px]">
           You don&apos;t have any notes yet. Start a new note to capture your
           thoughts and ideas.
         </p>
@@ -55,7 +55,7 @@ export default function Home() {
       {/* Create New Note Button */}
       <Link
         href="/new"
-        className="w-12 h-12 flex items-center justify-center shrink-0 rounded-full shadow-[0px_7px_11px_0px_rgba(202,_207,_216,_0.70)] bg-blue-500 z-10 absolute bottom-20 right-4 transition"
+        className="w-12 h-12 flex items-center justify-center shrink-0 rounded-full shadow-[0px_7px_11px_0px_rgba(202,_207,_216,_0.70)] bg-blue-500 z-10 absolute bottom-20 right-4 transition md:w-16 md:h-16 md:bottom-24 md:right-8"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -72,10 +72,10 @@ export default function Home() {
       </Link>
 
       {/* Menu Bar */}
-      <nav className="flex py-150 px-200 justify-between items-center border border-t-neutral-200 bg-white shadow-[0px_-4px_6px_0px_rgba(240,_240,_240,_0.60)] w-full">
+      <nav className="flex py-150 px-200 justify-between items-center border border-t-neutral-200 bg-white shadow-[0px_-4px_6px_0px_rgba(240,_240,_240,_0.60)] w-full md:px-400">
         <Link
           href="/"
-          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow ${
+          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow md:max-w-[80px] ${
             pathname === "/" ? "bg-blue-50" : "bg-white"
           }`}
         >
@@ -91,7 +91,7 @@ export default function Home() {
               fillRule="evenodd"
               clipRule="evenodd"
               d="M4.79614 8.02539C5.21035 8.02539 5.54614 8.36118 5.54614 8.77539V17.4504C5.54614 18.7282 6.58225 19.7643 7.86003 19.7643H16.7394C18.0172 19.7643 19.0533 18.7282 19.0533 17.4504V8.77539C19.0533 8.36118 19.3891 8.02539 19.8033 8.02539C20.2175 8.02539 20.5533 8.36118 20.5533 8.77539V17.4504C20.5533 19.5566 18.8456 21.2643 16.7394 21.2643H7.86003C5.75382 21.2643 4.04614 19.5566 4.04614 17.4504V8.77539C4.04614 8.36118 4.38193 8.02539 4.79614 8.02539Z"
-              fill="#335CFF"
+              fill={pathname === "/" ? "#335CFF" : "525866"}
             />
             <path
               fillRule="evenodd"
@@ -112,11 +112,20 @@ export default function Home() {
               fill="#335CFF"
             />
           </svg>
+          <span
+            className={`text-preset-6 hidden md:block ${
+              pathname === "/" ? "text-blue-500" : "text-neutral-600"
+            }`}
+          >
+            Home
+          </span>
         </Link>
+
+        <div className="w-px shrink-0 h-[50px] self-stretch bg-neutral-100 hidden md:block" />
 
         <Link
           href="/search"
-          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow ${
+          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow md:max-w-[80px] ${
             pathname === "/search" ? "bg-blue-50" : "bg-white"
           }`}
         >
@@ -141,15 +150,24 @@ export default function Home() {
               fill="#525866"
             />
           </svg>
+          <span
+            className={`text-preset-6 hidden md:block ${
+              pathname === "/search" ? "text-blue-500" : "text-neutral-600"
+            }`}
+          >
+            Search
+          </span>
         </Link>
 
+        <div className="w-px shrink-0 h-[50px] self-stretch bg-neutral-100 hidden md:block" />
+
         <Link
-          href="/archive"
-          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow ${
-            pathname === "/archive" ? "bg-blue-50" : "bg-white"
+          href="/archived"
+          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow md:max-w-[80px] ${
+            pathname === "/archived" ? "bg-blue-50" : "bg-white"
           }`}
         >
-          {/* Archive Icon */}
+          {/* Archived Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
@@ -186,10 +204,21 @@ export default function Home() {
               strokeLinejoin="round"
             />
           </svg>
+
+          <span
+            className={`text-preset-6 hidden md:block ${
+              pathname === "/archived" ? "text-blue-500" : "text-neutral-600"
+            }`}
+          >
+            Archived
+          </span>
         </Link>
+
+        <div className="w-px shrink-0 h-[50px] self-stretch bg-neutral-100 hidden md:block" />
+
         <Link
           href="/tag"
-          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow ${
+          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow md:max-w-[80px] ${
             pathname === "/tag" ? "bg-blue-50" : "bg-white"
           }`}
         >
@@ -220,10 +249,20 @@ export default function Home() {
               strokeLinejoin="round"
             />
           </svg>
+          <span
+            className={`text-preset-6 hidden md:block ${
+              pathname === "/tag" ? "text-blue-500" : "text-neutral-600"
+            }`}
+          >
+            Tag
+          </span>
         </Link>
+
+        <div className="w-px shrink-0 h-[50px] self-stretch bg-neutral-100 hidden md:block" />
+
         <Link
           href="/settings"
-          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow ${
+          className={`flex flex-col items-center gap-1 py-1 rounded-4 grow md:max-w-[80px] ${
             pathname === "/settings" ? "bg-blue-50" : "bg-white"
           }`}
         >
@@ -242,6 +281,13 @@ export default function Home() {
               fill="#525866"
             />
           </svg>
+          <span
+            className={`text-preset-6 hidden md:block ${
+              pathname === "/settings" ? "text-blue-500" : "text-neutral-600"
+            }`}
+          >
+            Settings
+          </span>
         </Link>
       </nav>
     </div>

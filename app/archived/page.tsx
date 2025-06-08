@@ -1,7 +1,7 @@
 export default function ArchivePage() {
   return (
     <div>
-      <h1>Archive</h1>
+      <h1>Archived</h1>
     </div>
   );
 }
